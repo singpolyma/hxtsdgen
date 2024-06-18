@@ -40,8 +40,9 @@ class Selector {
 
     function exposeClass(cl:ClassType, autoInclude = false) {
         if (autoInclude) {
-            if (autoIncluded.exists(cl.name)) return;
-            autoIncluded.set(cl.name, true);
+            var key = cl.pack.join('.') + '.' + cl.name;
+            if (autoIncluded.exists(key)) return;
+            autoIncluded.set(key, true);
         }
 
         if (autoInclude || cl.meta.has(":expose")) {
