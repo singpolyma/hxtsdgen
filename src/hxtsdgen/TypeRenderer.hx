@@ -39,8 +39,7 @@ class TypeRenderer {
                         "void";
 
                     case [{pack: [], name: "Null"}, [realT]]: // Haxe 4.x
-                        // TODO: generate `| null` union unless it comes from an optional field?
-                        renderType(ctx, realT, paren);
+                        renderType(ctx, realT, paren) + " | null";
 
                     case [{pack: ["haxe", "extern"], name: "EitherType"}, [aT, bT]]:
                         '${renderType(ctx, aT, true)} | ${renderType(ctx, bT, true)}';
@@ -62,8 +61,7 @@ class TypeRenderer {
             case TType(_.get() => dt, params):
                 switch [dt, params] {
                     case [{pack: [], name: "Null"}, [realT]]: // Haxe 3.x
-                        // TODO: generate `| null` union unless it comes from an optional field?
-                        renderType(ctx, realT, paren);
+                        renderType(ctx, realT, paren) + " | null";
 
                     default:
                         switch (dt.type) {
