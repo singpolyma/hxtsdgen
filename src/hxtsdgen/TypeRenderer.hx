@@ -17,7 +17,7 @@ class TypeRenderer {
                         "string";
 
                     case [{pack: [], name: "Array"}, [elemT]]:
-                        renderType(ctx, elemT, true) + "[]";
+                        "Array<" + renderType(ctx, elemT, true) + ">";
 
                     case [{name: name, kind: KTypeParameter(_)}, _]:
                         name;
